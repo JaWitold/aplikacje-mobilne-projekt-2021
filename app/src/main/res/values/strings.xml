@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">projekt AM</string>
+    <string name="add_new_task_to_do">Dodaj nowe zadanie</string>
+    <string name="show_todo">sortuj wg daty</string>
+    <string name="submit">Dodaj</string>
+    <string name="title">Tytuł</string>
+    <string name="when">Kiedy?</string>
+    <string name="high_priority">wysoki priorytet</string>
+    <string name="medium_priority">średni priorytet</string>
+    <string name="low_priority">niski priorytet</string>
+    <string name="show_high">pokaż bardzo ważne</string>
+    <string name="show_medium">pokaż średnio ważne</string>
+    <string name="show_low">pokaż mało ważne</string>
+    <string name="sort_by_importance">sortuj wg. ważności</string>
+    <string name="username">Nazwa użytkownika</string>
+    <string name="password">Hasło</string>
+    <string name="logowanie">Logowanie</string>
+    <string name="zaloguj">Zaloguj</string>
+    <string name="rejestracja">rejestracja</string>
+    <string name="imi_i_nazwisko">imię i nazwisko</string>
+    <string name="email">email</string>
+</resources>
