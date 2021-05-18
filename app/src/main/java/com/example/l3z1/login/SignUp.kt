@@ -34,7 +34,7 @@ class SignUp : AppCompatActivity() {
                 Handler(Looper.getMainLooper()).postDelayed({
 
                     val putData: PutData =
-                        PutData("http://192.168.0.111/server/signup.php", "POST", fields, data)
+                        PutData("http://daoehremvz.cfolks.pl/signup.php", "POST", fields, data)
                     if (putData.startPut()) {
                         if (putData.onComplete()) {
 

@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.example.l3z1.MainActivity
 import com.example.l3z1.R
 import com.vishnusivadas.advanced_httpurlconnection.PutData
@@ -19,12 +16,15 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val progressbar = findViewById<ProgressBar>(R.id.progressbar)
+
         findViewById<Button>(R.id.login).setOnClickListener {
 
             val fields = arrayOf("username", "password")
             val data = arrayOf("username", "password")
 
             if(!(findViewById<EditText>(R.id.username).text.toString().isEmpty() || findViewById<EditText>(R.id.password).text.toString().isEmpty())) {
+                progressbar.visibility = View.VISIBLE
 
                 data[0] = findViewById<EditText>(R.id.username).text.toString()
                 data[1] = findViewById<EditText>(R.id.password).text.toString()
@@ -32,9 +32,10 @@ class Login : AppCompatActivity() {
                 Handler(Looper.getMainLooper()).postDelayed({
 
                     val putData: PutData =
-                            PutData("http://192.168.0.111/server/login.php", "POST", fields, data)
+                            PutData("http://daoehremvz.cfolks.pl/login.php", "POST", fields, data)
                     if (putData.startPut()) {
                         if (putData.onComplete()) {
+                            progressbar.visibility = View.GONE
 
                             val result: String = putData.result
                             if(result == "logged") {

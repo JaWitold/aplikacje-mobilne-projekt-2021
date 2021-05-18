@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:textAlignment="center">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="50dp"
+        android:text="TaskBook"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Regulamin:"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:layout_marginVertical="30dp"
+        />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_maecenas_in_tellus_et_arcu_fringilla_molestie_vitae_in_odio_nulla_et_massa_mauris_nunc_iaculis_porta_risus_ac_consequat_sed_aliquam_libero_vitae_nibh_condimentum_eget_blandit_sapien_dictum_phasellus_quis_cursus_quam_ut_auctor_tellus_fusce_sit_amet_augue_vitae_ligula_ornare_consequat_nec_eget_purus_vivamus_gravida_in_nisl_a_laoreet_donec_id_vehicula_nisi_nullam_id_leo_accumsan_viverra_felis_bibendum_iaculis_nibh_aenean_vulputate_auctor_mauris_vel_fermentum_proin_eget_sagittis_magna_cras_at_tincidunt_ex_fusce_nec_ligula_non_lectus_euismod_scelerisque_aliquam_porta_nunc_a_mollis_tristique_duis_non_leo_sit_amet_est_egestas_feugiat_quis_sit_amet_turpis_donec_eget_placerat_mauris_fusce_accumsan_magna_vitae_sagittis_gravida_neque_ipsum_finibus_neque_ut_semper_lorem_neque_non_turpis_sed_vel_dui_sit_amet_dolor_ultricies_mollis_quis_vel_massa_etiam_dictum_tristique_semper_etiam_posuere_iaculis_lorem_dignissim_accumsan_sapien_elementum_vitae_suspendisse_tristique_arcu_sit_amet_ligula_maximus_accumsan_sed_scelerisque_dolor_in_tortor_vulputate_vulputate_nullam_fermentum_nec_metus_id_egestas_curabitur_a_vehicula_nulla_mauris_a_libero_sit_amet_velit_fermentum_convallis_ac_quis_magna_donec_tincidunt_velit_eget_nibh_commodo_at_porta_arcu_laoreet_ut_in_libero_in_est_facilisis_feugiat_quis_nec_eros_duis_venenatis_dolor_sem_ut_fermentum_dolor_pellentesque_ac_cras_eu_dui_massa_cras_lorem_erat_sagittis_eleifend_urna_quis_finibus_commodo_nunc_mauris_imperdiet_facilisis_turpis_quis_mollis_aliquam_finibus_vehicula_lacus_vitae_efficitur_nulla_eget_tincidunt_massa_quisque_tortor_sem_consectetur_eleifend_faucibus_quis_aliquam_vitae_odio_pellentesque_et_magna_dolor_quisque_gravida_sit_amet_tellus_id_condimentum_nunc_elementum_lectus_massa_sed_blandit_neque_faucibus_fringilla_maecenas_mollis_molestie_diam_nec_pulvinar_sem_tristique_vel_aliquam_euismod_in_enim_non_molestie_nam_lobortis_eget_leo_vel_laoreet_pellentesque_iaculis_ex_id_magna_egestas_tristique_ut_nec_metus_vitae_lacus_ullamcorper_imperdiet_in_ac_laoreet_lacus_morbi_eget_ipsum_fermentum_ultrices_dolor_in_rutrum_lorem_in_lacus_urna_blandit_eget_leo_vitae_sagittis_euismod_nisl_nunc_id_elit_eleifend_consequat_nulla_et_suscipit_odio_vivamus_aliquet_lorem_sit_amet_purus_ultricies_tempus_mauris_venenatis_dolor_eget_nibh_pretium_cursus_maecenas_non_tristique_ex_morbi_pulvinar_nunc_ut_sapien_efficitur_suscipit_vestibulum_laoreet_magna_vel_rutrum_sodales_erat_nulla_pharetra_mi_quis_laoreet_orci_dolor_sit_amet_magna_pellentesque_neque_est_ultricies_eget_condimentum_vel_facilisis_condimentum_dolor_quisque_sagittis_lacus_quis_quam_bibendum_egestas_nec_quis_mi_sed_feugiat_laoreet_tristique_phasellus_vestibulum_orci_tellus_eu_dapibus_sapien_hendrerit_et_maecenas_tincidunt_id_diam_quis_maximus_mauris_sit_amet_ante_risus_aenean_non_ex_at_diam_tincidunt_vestibulum_sit_amet_sed_mauris_quisque_consectetur_lacinia_tortor_etiam_quam_orci_interdum_at_nisi_et_varius_cursus_quam_donec_dapibus_nisi_turpis_sit_amet_varius_erat_condimentum_nec"
+        android:textAlignment="center" />
+
+
+</LinearLayout>

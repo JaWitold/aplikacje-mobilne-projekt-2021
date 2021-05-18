@@ -2,14 +2,17 @@ package com.example.l3z1
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.io.Serializable
 import kotlin.random.Random
+
 
 class MainActivity: AppCompatActivity() {
 
@@ -20,7 +23,7 @@ class MainActivity: AppCompatActivity() {
     private var listToShow = list
     private var sortByTime:Boolean = false
     private var sortByImportance:Boolean = false
-
+    private val bottomNavigationMenuView: BottomNavigationView = findViewById(R.id.bottom_nav)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
