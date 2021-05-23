@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.L3z1"
         android:usesCleartextTraffic="true">
-        <activity android:name=".regulations"></activity>
+        <activity android:name=".newGroup"></activity>
+        <activity android:name=".regulations" />
         <activity android:name=".about" />
         <activity android:name=".AboutUs" />
         <activity android:name=".login.Login">

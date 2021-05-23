@@ -2,14 +2,21 @@ package com.example.l3z1
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Switch
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.l3z1.login.Login
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.GsonBuilder
+import com.vishnusivadas.advanced_httpurlconnection.PutData
+import org.json.JSONObject
 import java.io.Serializable
 import kotlin.random.Random
 
@@ -23,18 +30,21 @@ class MainActivity: AppCompatActivity() {
     private var listToShow = list
     private var sortByTime:Boolean = false
     private var sortByImportance:Boolean = false
-    private val bottomNavigationMenuView: BottomNavigationView = findViewById(R.id.bottom_nav)
+    private lateinit var user: User
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        user = intent!!.extras!!.getSerializable("user") as User
         recyclerView = findViewById(R.id.RecyclerView)
 
         layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
                 false)
         recyclerView.layoutManager = layoutManager
+        loadTasks()
+        Log.i("mylog", list.size.toString())
+
         display(list)
     }
 
@@ -48,14 +58,52 @@ class MainActivity: AppCompatActivity() {
                 1 -> R.drawable.importance_med
                 else -> R.drawable.importance_high
             }
-           list.add(Task("title$i", i.toString(), img))
+           list.add(Task("title$i", i.toString(), img, 1))
         }
         return list
+    }
+
+    private fun loadTasks() {
+        val fields = arrayOf("id")
+        val data = arrayOf(user.id.toString())
+
+        Handler(Looper.getMainLooper()).postDelayed({
+
+            val putData: PutData =
+                PutData("http://daoehremvz.cfolks.pl/tasks.php", "POST", fields, data)
+            if (putData.startPut()) {
+                if (putData.onComplete()) {
+
+                    val result: String = putData.result
+                    if(result.startsWith("success")) {
+
+                        val json = result.substring(7).replace("[", "{ \"list\": [").replace("]", "]}")
+                        //Log.i("mylog", json)
+                        val gson = GsonBuilder().create();
+                        val xxx = gson.fromJson(json, TaskList::class.java)
+
+                        //Log.i("mylog", xxx.list.size.toString())
+                        list = xxx.list as ArrayList<Task>
+                        display(list)
+                    } else {
+                        Toast.makeText(this, result, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }, 100)
+
     }
 
     fun addNewTask(view: View) {
         val intent = Intent(this, AddNewTask::class.java)
         startActivityForResult(intent, 1)
+    }
+
+    fun addNewGroup(view: View) {
+        Log.i("mylog", "click")
+        val intent = Intent(this, newGroup::class.java)
+        intent.putExtra("user", user)
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -68,7 +116,7 @@ class MainActivity: AppCompatActivity() {
                 else -> R.drawable.importance_high
             }
 
-            list.add(Task(data.getStringExtra("title").toString(), data.getStringExtra("time").toString(), img))
+            list.add(Task(data.getStringExtra("title").toString(), data.getStringExtra("time").toString(), img, 1)) //TODO: choose group id
             display(sortByDate())
         }
     }
@@ -125,3 +173,5 @@ class MainActivity: AppCompatActivity() {
     }
 
 }
+
+class TaskList(val list: List<Task>)

@@ -6,8 +6,12 @@ import android.app.TimePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.*
+import com.example.l3z1.login.Login
+import com.vishnusivadas.advanced_httpurlconnection.PutData
 import java.util.*
 
 
@@ -44,9 +48,32 @@ class AddNewTask : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Time
         myIntent.putExtra("title", title)
         myIntent.putExtra("time", time)
         myIntent.putExtra("img", radioButton.text.toString())
-        
 
-        setResult(1, myIntent)
+        //insert into database
+        val fields = arrayOf("title", "time", "img", "groupId")
+        val data = arrayOf(title, time, radioButton.text.toString(), "1")
+
+        Handler(Looper.getMainLooper()).postDelayed({
+
+            val putData: PutData =
+                PutData("http://daoehremvz.cfolks.pl/addTask.php", "POST", fields, data)
+            if (putData.startPut()) {
+                if (putData.onComplete()) {
+
+                    val result: String = putData.result
+                    if(result == "Success") {
+                        val myIntent = Intent(this, Login::class.java)
+                        startActivity(myIntent)
+                        finish()
+                    } else {
+                        Toast.makeText(this, result, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } }, 100)
+
+
+
+        setResult(2, myIntent)
         finish();
     }
 

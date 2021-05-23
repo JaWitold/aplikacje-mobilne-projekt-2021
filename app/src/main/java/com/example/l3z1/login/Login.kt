@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.example.l3z1.MainActivity
 import com.example.l3z1.R
+import com.example.l3z1.User
 import com.vishnusivadas.advanced_httpurlconnection.PutData
 
 class Login : AppCompatActivity() {
@@ -31,15 +33,18 @@ class Login : AppCompatActivity() {
 
                 Handler(Looper.getMainLooper()).postDelayed({
 
-                    val putData: PutData =
+                    val putData =
                             PutData("http://daoehremvz.cfolks.pl/login.php", "POST", fields, data)
                     if (putData.startPut()) {
                         if (putData.onComplete()) {
                             progressbar.visibility = View.GONE
 
                             val result: String = putData.result
-                            if(result == "logged") {
+                            if(result.startsWith("logged")) {
+                                Log.i("myLog", result)
                                 val myIntent = Intent(this, MainActivity::class.java)
+                                val user = User(result.substring(7));
+                                myIntent.putExtra("user", user)
                                 startActivity(myIntent)
                                 finish()
                             } else {
