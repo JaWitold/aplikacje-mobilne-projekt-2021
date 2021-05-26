@@ -6,19 +6,14 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.Switch
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.l3z1.login.Login
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.GsonBuilder
 import com.vishnusivadas.advanced_httpurlconnection.PutData
-import org.json.JSONObject
 import java.io.Serializable
-import kotlin.random.Random
 
 
 class MainActivity: AppCompatActivity() {
@@ -27,7 +22,6 @@ class MainActivity: AppCompatActivity() {
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>
     private var list = arrayListOf<Task>()
-    private var listToShow = list
     private var sortByTime:Boolean = false
     private var sortByImportance:Boolean = false
     private lateinit var user: User
@@ -48,20 +42,20 @@ class MainActivity: AppCompatActivity() {
         display(list)
     }
 
-    private fun generateTasks(): ArrayList<Task> {
-        val list:ArrayList<Task> = arrayListOf<Task>()
-
-
-        for (i in 0..100) {
-            val img: Int = when(Random.nextInt(3)) {
-                0 -> R.drawable.importance_low
-                1 -> R.drawable.importance_med
-                else -> R.drawable.importance_high
-            }
-           list.add(Task("title$i", i.toString(), img, 1))
-        }
-        return list
-    }
+//    private fun generateTasks(): ArrayList<Task> {
+//        val list:ArrayList<Task> = arrayListOf<Task>()
+//
+//
+//        for (i in 0..100) {
+//            val img: Int = when(Random.nextInt(3)) {
+//                0 -> R.drawable.importance_low
+//                1 -> R.drawable.importance_med
+//                else -> R.drawable.importance_high
+//            }
+//           list.add(Task("title$i", i.toString(), img, 1))
+//        }
+//        return list
+//    }
 
     private fun loadTasks() {
         val fields = arrayOf("id")
@@ -101,7 +95,7 @@ class MainActivity: AppCompatActivity() {
 
     fun addNewGroup(view: View) {
         Log.i("mylog", "click")
-        val intent = Intent(this, newGroup::class.java)
+        val intent = Intent(this, AddToGroup::class.java)
         intent.putExtra("user", user)
         startActivity(intent)
     }
@@ -116,7 +110,7 @@ class MainActivity: AppCompatActivity() {
                 else -> R.drawable.importance_high
             }
 
-            list.add(Task(data.getStringExtra("title").toString(), data.getStringExtra("time").toString(), img, 1)) //TODO: choose group id
+            list.add(Task(data.getStringExtra("title").toString(), data.getStringExtra("time").toString(), img, user.id))
             display(sortByDate())
         }
     }

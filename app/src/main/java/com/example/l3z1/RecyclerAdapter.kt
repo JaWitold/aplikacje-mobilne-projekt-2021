@@ -1,6 +1,5 @@
 package com.example.l3z1
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +28,7 @@ class RecyclerAdapter(val list: List<Task>): RecyclerView.Adapter<RecyclerAdapte
     class ViewHolder(itemView: View, private val list: List<Task>): RecyclerView.ViewHolder(itemView) {
         var itemImage: ImageView = itemView.findViewById(R.id.image)
         var itemTitle: TextView = itemView.findViewById(R.id.title)
-        var itemTime: TextView = itemView.findViewById(R.id.time)
+        var itemTime: TextView = itemView.findViewById(R.id.username)
 
         init {
             itemView.setOnLongClickListener{view: View ->

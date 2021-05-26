@@ -1,6 +1,5 @@
 package com.example.l3z1
 
-import android.util.Log
 import java.io.Serializable
 
 class User(data: String): Serializable {
@@ -17,4 +16,8 @@ class User(data: String): Serializable {
         fullname = tmp.substring(0, tmp.indexOf("/"))
         email = tmp.substring(1 + fullname.length)
     }
+
+    constructor(newId: Int, newUsername: String, newFullname: String, newEmail: String) : this(
+        "$newId/$newUsername/$newFullname/$newEmail"
+    )
 }
