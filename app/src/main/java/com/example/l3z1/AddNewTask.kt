@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.example.l3z1.login.Login
@@ -22,11 +23,12 @@ class AddNewTask : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Time
     private var day = 0
     private var month = 0
     private var year = 0
+    private var id: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_task)
-
+        id = intent.getIntExtra("userid", 0)
         findViewById<Button>(R.id.editTextTime).setOnClickListener {
             val cal : Calendar = Calendar.getInstance()
             DatePickerDialog(this, this, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show()
@@ -42,16 +44,24 @@ class AddNewTask : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Time
         val radioButton = findViewById<RadioButton>(selectedOption)
         
         
-        if(time.equals("when")) time = ""
+        if(time == "Kiedy?") time = ""
 
         val myIntent: Intent = Intent();
         myIntent.putExtra("title", title)
         myIntent.putExtra("time", time)
         myIntent.putExtra("img", radioButton.text.toString())
 
+        Log.i("mylog", radioButton.text.toString())
+
+        val img: Int = when(radioButton.text.toString()) {
+            "Niski priorytet" -> R.drawable.importance_low
+            "Średni priorytet" -> R.drawable.importance_med
+            else -> R.drawable.importance_high
+        }
+
         //insert into database
         val fields = arrayOf("title", "time", "img", "groupId")
-        val data = arrayOf(title, time, radioButton.text.toString(), "1")
+        val data = arrayOf(title, time, img.toString(), id.toString())
 
         Handler(Looper.getMainLooper()).postDelayed({
 

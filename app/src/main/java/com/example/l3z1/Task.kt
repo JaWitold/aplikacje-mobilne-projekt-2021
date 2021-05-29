@@ -2,7 +2,7 @@ package com.example.l3z1
 
 import java.io.Serializable
 
-class Task (var title:String, var time:String, var img:Int, var groupId:Int) : Serializable {
+class Task (var title:String, var time:String, var img:Int, var groupId:Int, var id:Int) : Serializable {
     var done = false
     var imgId:Int = -1
 

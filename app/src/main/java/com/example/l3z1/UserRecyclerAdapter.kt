@@ -3,6 +3,7 @@ package com.example.l3z1
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,7 +40,8 @@ class UserRecyclerAdapter(private val list: List<User>, var user: Int): Recycler
                 val fields = arrayOf("userId", "groupId")
                 val data = arrayOf(list[layoutPosition].id.toString(), id.toString())
                 Handler(Looper.getMainLooper()).postDelayed({
-                    val putData = PutData("http://daoehremvz.cfolks.pl/aor.php", "POST", fields, data)
+                    val putData = PutData("http://daoehremvz.cfolks.pl/addToGroup.php", "POST", fields, data)
+                    Log.i("mylog", list[layoutPosition].id.toString())
                     if (putData.startPut()) {
                         if (putData.onComplete()) {
 

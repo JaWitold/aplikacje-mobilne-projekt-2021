@@ -1,6 +1,11 @@
 package com.example.l3z1
 
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,6 +19,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.GsonBuilder
 import com.vishnusivadas.advanced_httpurlconnection.PutData
 import java.io.Serializable
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 
 class MainActivity: AppCompatActivity() {
@@ -37,9 +48,12 @@ class MainActivity: AppCompatActivity() {
                 false)
         recyclerView.layoutManager = layoutManager
         loadTasks()
-        Log.i("mylog", list.size.toString())
+
+
+        //Log.i("mylog", list.size.toString())
 
         display(list)
+        setNotification()
     }
 
 //    private fun generateTasks(): ArrayList<Task> {
@@ -90,6 +104,7 @@ class MainActivity: AppCompatActivity() {
 
     fun addNewTask(view: View) {
         val intent = Intent(this, AddNewTask::class.java)
+        intent.putExtra("userid", user.id)
         startActivityForResult(intent, 1)
     }
 
@@ -104,13 +119,13 @@ class MainActivity: AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(data?.getStringExtra("title").toString() != "" && data?.getStringExtra("title") != null) {
 
-            val img: Int = when(data.getStringExtra("img").toString()) {
-                "low priority" -> R.drawable.importance_low
-                "medium priority" -> R.drawable.importance_med
-                else -> R.drawable.importance_high
-            }
+//            val img: Int = when(data.getStringExtra("img").toString()) {
+//                "Niski priorytet" -> R.drawable.importance_low
+//                "Średni priorytet" -> R.drawable.importance_med
+//                else -> R.drawable.importance_high
+//            }
 
-            list.add(Task(data.getStringExtra("title").toString(), data.getStringExtra("time").toString(), img, user.id))
+            loadTasks()
             display(sortByDate())
         }
     }
@@ -164,6 +179,45 @@ class MainActivity: AppCompatActivity() {
         this.list.clear()
         this.list.addAll(state.getSerializable("mytasks") as ArrayList<Task>)
         this.display(list)
+    }
+
+    companion object {
+        const val CHANNEL_ID = "mynotificationservice"
+    }
+
+    private fun createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name: CharSequence = "notification service"
+            val description = "notification"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance)
+            channel.description = description
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            val notificationManager = getSystemService(
+                NotificationManager::class.java
+            )
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun setNotification() {
+        createNotificationChannel()
+        val intent = Intent(this, NotificationBroadcast::class.java)
+        val pending = PendingIntent.getBroadcast(this, 0, intent, 0)
+        val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+        if(list.size > 0) {
+            val time = (sortByDate().filter { it.time != "" })[0].time
+            Log.i("mylog", time);
+            if (time != "") {
+                val dt = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))
+                    .atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
+
+                alarmManager.set(AlarmManager.RTC_WAKEUP, dt - 5000, pending)
+            }
+        }
     }
 
 }

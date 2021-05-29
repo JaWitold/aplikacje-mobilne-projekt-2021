@@ -1,5 +1,8 @@
 package com.example.l3z1
 
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.vishnusivadas.advanced_httpurlconnection.PutData
 
 class RecyclerAdapter(val list: List<Task>): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
@@ -40,7 +44,15 @@ class RecyclerAdapter(val list: List<Task>): RecyclerView.Adapter<RecyclerAdapte
                     Toast.makeText(view.context, itemTitle.text.toString() + " done", Toast.LENGTH_SHORT).show()
                     itemTitle.text = itemTitle.text.toString() + " [done]"
                     itemImage.setImageResource(list[position].img)
+                    //usuń z tabeli
 
+                    val fields = arrayOf("id")
+                    val data = arrayOf(list[layoutPosition].id.toString())
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val putData = PutData("http://daoehremvz.cfolks.pl/removeTask.php", "POST", fields, data)
+                        putData.startPut()
+                        putData.onComplete()
+                    }, 100)
                 }
                 true
             }

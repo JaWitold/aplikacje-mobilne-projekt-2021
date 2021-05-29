@@ -12,10 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.L3z1"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AddToGroup"></activity>
-        <activity android:name=".regulations" />
-        <activity android:name=".about" />
-        <activity android:name=".AboutUs" />
+        <activity android:name=".AddToGroup"/>
         <activity android:name=".login.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +23,8 @@
         <activity android:name=".login.SignUp" />
         <activity android:name=".AddNewTask" />
         <activity android:name=".MainActivity" />
+
+        <receiver android:name=".NotificationBroadcast"/>
     </application>
 
 </manifest>
