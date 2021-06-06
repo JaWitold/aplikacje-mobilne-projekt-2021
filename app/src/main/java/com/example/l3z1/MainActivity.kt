@@ -11,8 +11,6 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,11 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.GsonBuilder
 import com.vishnusivadas.advanced_httpurlconnection.PutData
 import java.io.Serializable
-import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
-import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 
@@ -234,6 +229,10 @@ class MainActivity: AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun startAbout(view: View) {
+        startActivity(Intent(this@MainActivity, about::class.java))
     }
 
 }
