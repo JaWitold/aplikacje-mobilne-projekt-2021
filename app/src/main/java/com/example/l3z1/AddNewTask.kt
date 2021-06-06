@@ -83,8 +83,8 @@ class AddNewTask : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Time
 
 
 
-        setResult(2, myIntent)
-        finish();
+        //setResult(2, myIntent)
+        //finish();
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {

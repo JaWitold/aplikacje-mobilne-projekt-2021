@@ -53,7 +53,7 @@ class MainActivity: AppCompatActivity() {
         //Log.i("mylog", list.size.toString())
 
         display(list)
-        setNotification()
+        //setNotification()
     }
 
 //    private fun generateTasks(): ArrayList<Task> {
@@ -93,6 +93,8 @@ class MainActivity: AppCompatActivity() {
                         //Log.i("mylog", xxx.list.size.toString())
                         list = xxx.list as ArrayList<Task>
                         display(list)
+                        setNotification()
+
                     } else {
                         Toast.makeText(this, result, Toast.LENGTH_SHORT).show()
                     }
@@ -105,7 +107,7 @@ class MainActivity: AppCompatActivity() {
     fun addNewTask(view: View) {
         val intent = Intent(this, AddNewTask::class.java)
         intent.putExtra("userid", user.id)
-        startActivityForResult(intent, 1)
+        startActivity(intent)
     }
 
     fun addNewGroup(view: View) {
@@ -124,9 +126,10 @@ class MainActivity: AppCompatActivity() {
 //                "Średni priorytet" -> R.drawable.importance_med
 //                else -> R.drawable.importance_high
 //            }
-
+            Log.i("mylog", "jjjjjj")
             loadTasks()
             display(sortByDate())
+            return;
         }
     }
 
@@ -204,18 +207,28 @@ class MainActivity: AppCompatActivity() {
     }
 
     private fun setNotification() {
+        Log.i("mylog", "setting alarms");
+
         createNotificationChannel()
         val intent = Intent(this, NotificationBroadcast::class.java)
         val pending = PendingIntent.getBroadcast(this, 0, intent, 0)
         val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-        if(list.size > 0) {
-            val time = (sortByDate().filter { it.time != "" })[0].time
-            Log.i("mylog", time);
-            if (time != "") {
-                val dt = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))
-                    .atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
 
-                alarmManager.set(AlarmManager.RTC_WAKEUP, dt - 5000, pending)
+
+        if(list.size > 0) {
+            val time = (sortByDate().filter { it.time != "" })
+            Log.i("mylog", time.toString());
+
+            for(t in time) {
+                Log.i("mylog", t.time);
+                if (t.time != "") {
+                    val dt = LocalDateTime.parse(t.time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+                            .atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
+
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, dt, pending)
+                    //Log.i("mylog", "$dt");
+
+                }
             }
         }
     }
