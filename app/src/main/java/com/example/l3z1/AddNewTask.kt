@@ -44,7 +44,7 @@ class AddNewTask : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Time
         val radioButton = findViewById<RadioButton>(selectedOption)
         
         
-        if(time == "Kiedy?") time = ""
+        if(time == "deadline") time = ""
 
         val myIntent: Intent = Intent();
         myIntent.putExtra("title", title)
@@ -54,8 +54,8 @@ class AddNewTask : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Time
         Log.i("mylog", radioButton.text.toString())
 
         val img: Int = when(radioButton.text.toString()) {
-            "Niski priorytet" -> R.drawable.importance_low
-            "Średni priorytet" -> R.drawable.importance_med
+            "low priority" -> R.drawable.importance_low
+            "medium priority" -> R.drawable.importance_med
             else -> R.drawable.importance_high
         }
 
