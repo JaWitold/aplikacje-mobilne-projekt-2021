@@ -125,7 +125,7 @@ class MainActivity: AppCompatActivity() {
 //            }
             Log.i("mylog", "jjjjjj")
             loadTasks()
-            display(sortByDate())
+            display(SortByDate())
             return;
         }
     }
@@ -137,14 +137,14 @@ class MainActivity: AppCompatActivity() {
 
 
     fun sortByImportance(view: View) {
-        display(sortByImportance())
+        display(SortByImportance())
     }
 
     fun sortByDate(view: View){
-        display(sortByDate())
+        display(SortByDate())
     }
 
-    private fun sortByDate(): ArrayList<Task> {
+    private fun SortByDate(): ArrayList<Task> {
 
         val newlist = list
         sortByTime = !sortByTime
@@ -157,7 +157,7 @@ class MainActivity: AppCompatActivity() {
         return newlist
     }
 
-    private fun sortByImportance(): ArrayList<Task> {
+    private fun SortByImportance(): ArrayList<Task> {
 
         val newlist = list
         sortByImportance = !sortByImportance
@@ -214,7 +214,7 @@ class MainActivity: AppCompatActivity() {
 
 
         if(list.size > 0) {
-            val time = (sortByDate().filter { it.time != "" })
+            val time = (SortByDate().filter { it.time != "" })
             Log.i("mylog", time.toString());
 
             for(t in time) {
