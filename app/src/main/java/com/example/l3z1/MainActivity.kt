@@ -88,6 +88,7 @@ class MainActivity: AppCompatActivity() {
 
                         //Log.i("mylog", xxx.list.size.toString())
                         list = xxx.list as ArrayList<Task>
+                        list.forEach { task -> task.useId() }
                         display(list)
                         setNotification()
 
@@ -164,12 +165,9 @@ class MainActivity: AppCompatActivity() {
         sortByImportance = !sortByImportance
 
         if(sortByImportance)
-            newlist.sortBy { it.img }
+            newlist.sortBy { it.imgId }
         else
-            newlist.sortByDescending { it.img }
-
-
-        Log.i("mylog", newlist.toString())
+            newlist.sortByDescending { it.imgId }
 
         return newlist
     }

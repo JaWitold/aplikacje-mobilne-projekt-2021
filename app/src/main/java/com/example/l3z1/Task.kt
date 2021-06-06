@@ -14,4 +14,12 @@ class Task (var title:String, var time:String, var img:Int, var groupId:Int, var
         }
     }
 
+    fun useId() {
+        imgId = when(img) {
+            R.drawable.importance_high -> 2
+            R.drawable.importance_med -> 1
+            else -> 0
+        }
+    }
+
 }

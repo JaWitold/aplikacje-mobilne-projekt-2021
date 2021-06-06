@@ -59,6 +59,8 @@ class AddNewTask : AppCompatActivity(), DatePickerDialog.OnDateSetListener, Time
             else -> R.drawable.importance_high
         }
 
+
+
         //insert into database
         val fields = arrayOf("title", "time", "img", "groupId")
         val data = arrayOf(title, time, img.toString(), id.toString())
