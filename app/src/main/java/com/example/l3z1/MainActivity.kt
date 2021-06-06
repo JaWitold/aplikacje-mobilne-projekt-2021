@@ -159,13 +159,17 @@ class MainActivity: AppCompatActivity() {
 
     private fun SortByImportance(): ArrayList<Task> {
 
-        val newlist = list
+        Log.i("mylog", "klkl")
+        var newlist = list
         sortByImportance = !sortByImportance
 
         if(sortByImportance)
-            newlist.sortBy { it.imgId }
+            newlist.sortBy { it.img }
         else
-            newlist.sortByDescending { it.imgId }
+            newlist.sortByDescending { it.img }
+
+
+        Log.i("mylog", newlist.toString())
 
         return newlist
     }
