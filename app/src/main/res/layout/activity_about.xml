@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".about"
     android:orientation="vertical"
     android:textAlignment="center">
 
@@ -26,7 +25,7 @@
         android:textAlignment="center"
         android:textSize="25sp"
         android:layout_marginVertical="30dp"
-         />
+        />
 
     <TextView
         android:id="@+id/textView3"
@@ -34,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="Piotr Rzepka, Witold Karaś"
         android:textAlignment="center"
-         />
+        />
 
     <TextView
         android:id="@+id/textView5"
@@ -53,8 +52,7 @@
         android:layout_marginHorizontal="50dp"
 
         android:text='Aplikacja powstała jako projekt na potrzeby kursu "Aplikacje Mobilne"'
-      />
-
+        />
 
 
 </LinearLayout>

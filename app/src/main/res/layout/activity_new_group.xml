@@ -11,7 +11,7 @@ android:weightSum="1"    >
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
-        android:text="Add user to Your group"
+        android:text="Dodaj użytkownika do grupy "
         android:textAlignment="center"
         android:textSize="33sp" />
 
@@ -22,7 +22,7 @@ android:weightSum="1"    >
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_weight="0.1"
-        android:hint="name"
+        android:hint="Imię"
         android:inputType="text" />
 
     <Button
@@ -36,7 +36,7 @@ android:weightSum="1"    >
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
         android:layout_weight="0.5" />
 
     <Button

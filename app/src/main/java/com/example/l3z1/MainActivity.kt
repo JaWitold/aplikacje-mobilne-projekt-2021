@@ -11,6 +11,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -117,6 +118,7 @@ class MainActivity: AppCompatActivity() {
         startActivity(intent)
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(data?.getStringExtra("title").toString() != "" && data?.getStringExtra("title") != null) {
@@ -138,12 +140,13 @@ class MainActivity: AppCompatActivity() {
         recyclerView.adapter = adapter
     }
 
-    fun showToDo(view: View) {
-        display(sortByDate())
-    }
 
     fun sortByImportance(view: View) {
         display(sortByImportance())
+    }
+
+    fun sortByDate(view: View){
+        display(sortByDate())
     }
 
     private fun sortByDate(): ArrayList<Task> {
