@@ -21,7 +21,7 @@ class RecyclerAdapter(val list: List<Task>): RecyclerView.Adapter<RecyclerAdapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemTime.text = list[position].time
-        holder.itemTitle.text = list[position].title +  " " + list[position].imgId.toString()
+        holder.itemTitle.text = list[position].title
         holder.itemImage.setImageResource(list[position].img)
     }
 
