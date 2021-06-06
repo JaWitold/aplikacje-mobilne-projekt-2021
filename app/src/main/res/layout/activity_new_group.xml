@@ -11,7 +11,7 @@ android:weightSum="1"    >
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.2"
-        android:text="Dodaj użytkownika do grupy "
+        android:text="add user to Your group"
         android:textAlignment="center"
         android:textSize="33sp" />
 
@@ -22,7 +22,7 @@ android:weightSum="1"    >
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_weight="0.1"
-        android:hint="Imię"
+        android:hint="name"
         android:inputType="text" />
 
     <Button
