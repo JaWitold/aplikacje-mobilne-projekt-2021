@@ -21,8 +21,8 @@ class NotificationBroadcast : BroadcastReceiver() {
 
         val builder = NotificationCompat.Builder(context!!, MainActivity.CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_lock_idle_alarm)
-            .setContentTitle("Przypomnienie")
-            .setContentText("nowe przeypomnienie")
+            .setContentTitle("TaskBook")
+            .setContentText("Upcoming task to do")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
 
         val manager = NotificationManagerCompat.from(context)

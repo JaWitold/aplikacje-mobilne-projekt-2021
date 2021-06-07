@@ -225,7 +225,7 @@ class MainActivity: AppCompatActivity() {
                     val dt = LocalDateTime.parse(t.time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
                             .atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
 
-                    alarmManager.set(AlarmManager.RTC_WAKEUP, dt, pending)
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, dt - 300 * 1000, pending)
                     //Log.i("mylog", "$dt");
 
                 }
